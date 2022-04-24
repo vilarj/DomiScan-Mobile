@@ -14,9 +14,9 @@ In the Dominican Republic, many families and friends gather together on weekends
 
 The word DomiScan has two meanings:
 
-- The first part, "Domi", has two meanings: etnicity and purpose. Domi refers to the Dominican Republic, a country that loves to play Dominoes. And, the second meaning refers to the game of Dominoes.
+- The first part, {+"Domi"+}, has two meanings: etnicity and purpose. Domi refers to the Dominican Republic, a country that loves to play Dominoes. And, the second meaning refers to the game of Dominoes.
 
-- The second part, "Scan", refers to a technical feature of the game. Instead of counting the resulting Dominoes from a match, we will use our phone's camera to scan the dominoes and let the app do all the counting for the players.
+- The second part, {+"Scan"+}, refers to a technical feature of the game. Instead of counting the resulting Dominoes from a match, we will use our phone's camera to scan the dominoes and let the app do all the counting for the players.
 
 # <a name="Problem"></a> Problem
 
