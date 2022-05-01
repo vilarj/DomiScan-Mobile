@@ -6,7 +6,7 @@
 - [Features](#Features)
 - [Download the App](#Download)
 
-# <a name="DomiScan"></a> What is DomiScan
+# <a name="DomiScan"></a> DomiScan
 
 The most popular game in the Dominican Republic has an app that can keep track of the players' scores and sum them up for you!
 
@@ -20,11 +20,11 @@ The word DomiScan has two meanings:
 
 - The second part, "Scan", refers to a technical feature of the game. Instead of counting the resulting Dominoes from a match, we will use our phone's camera to scan the dominoes and let the app do all the counting for the players.
 
-# <a name="Problem"></a> Problem
+# <a name="Problem"></a> Problems the app solves
 
 There is one process during the game that takes a lot of time and it can be misleading due to the people that count points usually are euphoric and pressure to count fast. Here is where DomiScan play its role, it would scan the dominos and count on behalf of the players, faciliting and quicken the counting process.
 
-# <a name="Features"></a> Features
+# <a name="Features"></a> Features & Technology
 
 - [x] Keep track of players' scores :notebook:
 - [x] Sum the resulting Dominoes :iphone:
