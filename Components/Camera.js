@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Button, View, Alert } from 'react-native';
+import { Button, View, Alert } from 'react-native';
+
 export default class Camera extends React.Component {
 
     render() {
