@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import Header from './Components/Header'
 import Body from './Components/Body'
 import PlayerName from './Components/PlayerName'
@@ -13,7 +13,7 @@ const App = () => {
       <PlayerName />
       <Body />
       <Total />
-      {/* <Camera /> */}
+      <Camera />
     </View>
   );
 };

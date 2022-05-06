@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '10%',
-        padding: 1, 
+        padding: 5, 
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
