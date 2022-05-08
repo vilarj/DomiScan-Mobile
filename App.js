@@ -9,7 +9,7 @@ const App = () => {
     <View>
       <Header />
       <Body />
-      <Camera />
+      {/* <Camera /> */}
     </View>
   );
 };

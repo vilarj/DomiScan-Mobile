@@ -1,77 +1,69 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 
-export default class Body extends React.Component {
-    render() {
-        return (
-            <View style={styles.container}>
+export default function Body() {
+    return (
+        // Main View
+        <View style={styles.container}>
 
-                {/* Players */}
-                <View style={styles.players}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
+            {/* Players */}
+            <View style={styles.players}>
+                <View style={styles.inner}>
+                    <TextInput 
+                        placeholder='Enter Name'
+                        editable
+                        maxLength={20}
+                    />
                 </View>
-
-                <View style={styles.players}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
-                </View>
-
-                {/* Body */}
-                <View style={styles.box}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
-                </View>
-
-                <View style={styles.box}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
-                </View>
-
-                {/* Total */}
-                <View style={styles.total_score}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
-                </View>
-
-                <View style={styles.total_score}>
-                    <View style={styles.inner}>
-                        <TextInput 
-                            placeholder='Enter Score'
-                            onChangeText={(value) => updateScore(value)}
-                        />
-                    </View>
-                </View>
-
             </View>
-        );
-    }
-}
 
-function updateScore(value) {
-    const total = total + value
+            <View style={styles.players}>
+                <View style={styles.inner}>
+                    <TextInput 
+                        placeholder='Enter Name'
+                        editable
+                        maxLength={20}
+                    />
+                </View>
+            </View>
 
-    return total
+            {/* Body */}
+            <View style={styles.box}>
+                <View style={styles.inner}>
+                    <TextInput 
+                        placeholder='Enter Score'
+                        editable
+                        // onChangeText={(value) => updateScore(value)}
+                    />
+                </View>
+            </View>
+
+            <View style={styles.box}>
+                <View style={styles.inner}>
+                    <TextInput 
+                        placeholder='Enter Score'
+                        editable
+                        // onChangeText={(value) => updateScore(value)}
+                    />
+                </View>
+            </View>
+
+            {/* Total */}
+            <View style={styles.total_score}>
+                <View style={styles.inner}>
+                    <Text>0</Text>
+                </View>
+            </View>
+
+            <View style={styles.total_score}>
+                <View style={styles.inner}>
+                    <Text>0</Text>
+                </View>
+            </View>
+        
+        {/* End of Main View */}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -95,7 +87,7 @@ const styles = StyleSheet.create({
     box: {
         width: '50%',
         height: '60%',
-        padding: 5
+        padding: 5,
     },
     inner: {
         flex: 1,
