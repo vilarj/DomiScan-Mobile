@@ -8,9 +8,9 @@ import LoginScreen from './LoginScreen/LoginScreen';
 const App = () => {
   return (
     <View>
-      {/* <LoginScreen /> */}
-      <Header />
-      <Body />
+      <LoginScreen />
+      {/* <Header />
+      <Body /> */}
       {/* <Camera /> */}
     </View>
   );
