@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Header from './Components/Header'
 import Body from './Components/Body'
 import Camera from './Components/Camera'
-import LoginScreen from './LoginScreen/LoginScreen';
+import LoginScreen from './Screens/LoginScreen';
 
 const App = () => {
   return (

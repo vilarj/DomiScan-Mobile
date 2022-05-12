@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import IconHeader from './Components/IconHeader'
 import CustomInput from './Components/CustomInput'

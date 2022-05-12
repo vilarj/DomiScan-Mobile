@@ -1,5 +1,5 @@
 import { SafeAreaView, Image, StyleSheet, useWindowDimensions } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react'
 import Logo from '../../assets/Logo.png'
 
 export function IconHeader() {
