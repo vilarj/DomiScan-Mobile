@@ -37,4 +37,4 @@ Working on it...
 # Dependencies
 
 - Camera Module: `expo install expo-camera`
--
+- EAS build: `npm install -g eas-cli`
