@@ -33,3 +33,8 @@ There is one process during the game that takes a lot of time and it can be misl
 # <a name="Download"></a> Download the App
 
 Working on it...
+
+# Dependencies
+
+- Camera Module: `expo install expo-camera`
+-
