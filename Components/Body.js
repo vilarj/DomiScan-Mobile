@@ -2,6 +2,28 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 export default function Body() {
+    const [scores, setScore] = useState({playerOne: 0, playerTwo: 0});
+
+    function calculateScores(input)
+    {
+
+        let inputStr = String(input).split(',');
+        let digits = inputStr.filter((value) => !isNaN(parseInt(value)));
+        let sum = digits.reduce((a, b) =>  parseInt(a) + parseInt(b), 0);
+
+        return sum;
+    
+    }
+
+    function handleChange(name, values)
+    {
+        let playerScore = calculateScores(values); 
+        if(playerScore) setScore(prevScores => ({
+            ...prevScores,
+            [name]: playerScore
+        }));
+    }
+    
     return (
         // Main View
         <View style={styles.container}>
@@ -33,7 +55,9 @@ export default function Body() {
                     <TextInput 
                         placeholder='Enter Score'
                         editable
-                        // onChangeText={(value) => updateScore(value)}
+                        onChangeText={(value) => handleChange('playerOne', value)}
+                        
+                        
                     />
                 </View>
             </View>
@@ -43,7 +67,7 @@ export default function Body() {
                     <TextInput 
                         placeholder='Enter Score'
                         editable
-                        // onChangeText={(value) => updateScore(value)}
+                        onChangeText={(value) => handleChange('playerTwo', value)}
                     />
                 </View>
             </View>
@@ -51,13 +75,13 @@ export default function Body() {
             {/* Total */}
             <View style={styles.total_score}>
                 <View style={styles.inner}>
-                    <Text>0</Text>
+                    <Text>{scores.playerOne}</Text>
                 </View>
             </View>
 
             <View style={styles.total_score}>
                 <View style={styles.inner}>
-                    <Text>0</Text>
+                    <Text>{scores.playerTwo}</Text>
                 </View>
             </View>
         
