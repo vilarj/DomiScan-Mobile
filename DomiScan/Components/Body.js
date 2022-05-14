@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { StyleSheet, Alert, View, TextInput, Text, Pressable } from 'react-native';
 
 export default function Body() {
     const [scores, setScore] = useState({playerOne: 0, playerTwo: 0});
+    const [name1, setName1] = useState('')
+    const [name2, setName2] = useState('')
+
+    const add25 = () => {
+        console.warn('25')
+    }
+
+    const add50 = () => {
+        console.warn('50')
+    }
 
     function calculateScores(input)
     {
@@ -12,7 +22,6 @@ export default function Body() {
         let sum = digits.reduce((a, b) =>  parseInt(a) + parseInt(b), 0);
 
         return sum;
-    
     }
 
     function handleChange(name, values)
@@ -25,67 +34,96 @@ export default function Body() {
     }
     
     return (
-        // Main View
-        <View style={styles.container}>
+        <View>
+            {/* Main View */}
+            <View style={styles.container}>
 
-            {/* Players */}
-            <View style={styles.players}>
+                {/* Players */}
+                <View style={styles.players}>
+                    <View style={styles.inner}>
+                        <TextInput 
+                            placeholder='Enter Name'
+                            onChangeText={setName1}
+                            editable
+                            maxLength={20}
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.players}>
+                    <View style={styles.inner}>
+                        <TextInput 
+                            placeholder='Enter Name'
+                            onChangeText={setName2}
+                            editable
+                            maxLength={20}
+                        />
+                    </View>
+                </View>
+
+                {/* Body */}
+                <View style={styles.box}>
+                    <View style={styles.inner}>
+                        <TextInput 
+                            placeholder='Enter Score'
+                            editable
+                            onChangeText={(value) => handleChange('playerOne', value)}        
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.box}>
+                    <View style={styles.inner}>
+                        <TextInput 
+                            placeholder='Enter Score'
+                            editable
+                            onChangeText={(value) => handleChange('playerTwo', value)}
+                        />
+                    </View>
+                </View>
+
+                {/* Total */}
+                <View style={styles.total_score}>
+                    <View style={styles.inner}>
+                        <Text>{scores.playerOne}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.total_score}>
+                    <View style={styles.inner}>
+                        <Text>{scores.playerTwo}</Text>
+                    </View>
+                </View>
+            
+            {/* End of Main View */}
+            </View>
+
+            {/* Stack Buttons */}
+            <Pressable 
+                style={styles.stack_buttons}
+                onPress={add25}
+            >
                 <View style={styles.inner}>
-                    <TextInput 
-                        placeholder='Enter Name'
-                        editable
-                        maxLength={20}
-                    />
+                    <Text>25</Text>
+                </View>
+            </Pressable>
+
+            <Pressable 
+                style={styles.stack_buttons}
+                onPress={add50}
+            >
+                
+                <View style={styles.inner}>
+                    <Text>50</Text>
+                </View>
+            </Pressable>
+
+            <View style={styles.stack_buttons}>
+                <View style={styles.inner}>
+                    <TextInput placeholder='Enter value' />
                 </View>
             </View>
 
-            <View style={styles.players}>
-                <View style={styles.inner}>
-                    <TextInput 
-                        placeholder='Enter Name'
-                        editable
-                        maxLength={20}
-                    />
-                </View>
-            </View>
-
-            {/* Body */}
-            <View style={styles.box}>
-                <View style={styles.inner}>
-                    <TextInput 
-                        placeholder='Enter Score'
-                        editable
-                        onChangeText={(value) => handleChange('playerOne', value)}
-                        
-                        
-                    />
-                </View>
-            </View>
-
-            <View style={styles.box}>
-                <View style={styles.inner}>
-                    <TextInput 
-                        placeholder='Enter Score'
-                        editable
-                        onChangeText={(value) => handleChange('playerTwo', value)}
-                    />
-                </View>
-            </View>
-
-            {/* Total */}
-            <View style={styles.total_score}>
-                <View style={styles.inner}>
-                    <Text>{scores.playerOne}</Text>
-                </View>
-            </View>
-
-            <View style={styles.total_score}>
-                <View style={styles.inner}>
-                    <Text>{scores.playerTwo}</Text>
-                </View>
-            </View>
-        
-        {/* End of Main View */}
         </View>
     );
 }
@@ -107,6 +145,11 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '20%',
         padding: 5
+    },
+    stack_buttons: {
+        width: '25%',
+        height: '12%',
+        padding: 5,
     },
     box: {
         width: '50%',
