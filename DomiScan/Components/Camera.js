@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Button, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Camera } from "expo-camera";
 
-export default function Camera2() {
+export default function Camera() {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
