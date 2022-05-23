@@ -37,4 +37,6 @@ Working on it...
 # Dependencies
 
 - Camera Module: `expo install expo-camera`
+- Navigation: `npm install @react-navigation/native`
+- React Native Screens: `npm install react-native-screens react-native-safe-area-context`
 - EAS build: `npm install -g eas-cli`
