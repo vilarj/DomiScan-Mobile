@@ -20,13 +20,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.vilarj.DomiScan",
-      "buildNumber": 2
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "buildNumber": 2
+        "backgroundColor": "#FFFFFF"
       },
       "package": "com.vilarj.DomiScan"
     },
