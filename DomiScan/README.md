@@ -38,3 +38,10 @@ Working on it...
 
 - Camera Module: `expo install expo-camera`
 - EAS build: `npm install -g eas-cli`
+
+### Backend
+- Python3
+- Flask: `pip3 install Flask`
+- Flask SQL Alchemy: `pip3 install Flask-SQLAlchemy`
+- mysqlclient: `pip3 install mysqlclient`
+- Flask Marsmallow: `pip3 install flask-mashmallow`
