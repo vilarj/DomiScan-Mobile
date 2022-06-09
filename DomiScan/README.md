@@ -36,7 +36,12 @@ Working on it...
 
 # Dependencies
 
+* Frontend:
 - Camera Module: `expo install expo-camera`
 - Navigation: `npm install @react-navigation/native`
 - React Native Screens: `npm install react-native-screens react-native-safe-area-context`
 - EAS build: `npm install -g eas-cli`
+
+* Backend:
+- Python 3
+- Flask: `pip install Flask`
