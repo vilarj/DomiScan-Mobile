@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
+import HomeScreen from "./Components/HomeScreen";
+import DominoesScreen from "./Components/DominoesScreen";
 import { NavigationContainer } from '@react-navigation/native';
-// import Camera2 from "./Components/Camera2";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const App = () => {
   const [data, setData] = useState([])
+  const Stack = createNativeStackNavigator();
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000")
@@ -19,16 +22,15 @@ const App = () => {
       )
   }, [])
 
-  const camera_module = () => {
-    console.log("Button pressed")
-  }
-
   return (
     <NavigationContainer>
+
+      {/* Main app */}
       <View>
         <Header />
         <Body />
 
+        {/* Backend */}
         <Text>
           {
             (typeof data.Photo === 'undefined')
@@ -39,16 +41,32 @@ const App = () => {
           }
         </Text>
 
+        {/* Camera Button */}
         <TouchableOpacity
-          onPress={camera_module}
+          onPress={() => {
+            navigation.navigate('Dominoes', { screens })
+          }}
           style={styles.button}
         >
           <Text style={styles.text}>Scan Dominoes</Text>
         </TouchableOpacity>
+
       </View>
     </NavigationContainer>
   );
 };
+
+function screens() {
+  <Stack.Navigator>
+
+    <Stack.Screen>
+      name="Dominoes"
+      component={DominoesScreen}
+      options={{ title: 'Dominoes' }}
+    </Stack.Screen>
+
+  </Stack.Navigator>
+}
 
 const styles = StyleSheet.create({
   button: {
