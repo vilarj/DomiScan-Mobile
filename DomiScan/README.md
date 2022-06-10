@@ -38,6 +38,7 @@ Working on it...
 
 - Camera Module: `expo install expo-camera`
 - EAS build: `npm install -g eas-cli`
+- React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context`
 
 ### Backend
 - Python3
