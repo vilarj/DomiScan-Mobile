@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import Body from "./Components/Body";
 import HomeScreen from "./Components/HomeScreen";
 import DominoesScreen from "./Components/DominoesScreen";
+import CustomButton from "./Components/CustomButton";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -34,7 +35,7 @@ const App = () => {
         <Text>
           {
             (typeof data.Photo === 'undefined')
-              ? (<Text> Loading... </Text>)
+              ? (<Text />)
               : (data.Photo.map((Photo, i) =>
                 <Text key={i}>{Photo} </Text>
               ))
@@ -42,15 +43,7 @@ const App = () => {
         </Text>
 
         {/* Camera Button */}
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Dominoes', { screens })
-          }}
-          style={styles.button}
-        >
-          <Text style={styles.text}>Scan Dominoes</Text>
-        </TouchableOpacity>
-
+        <CustomButton />
       </View>
     </NavigationContainer>
   );
@@ -67,18 +60,5 @@ function screens() {
 
   </Stack.Navigator>
 }
-
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    backgroundColor: "#eee",
-    width: "100%",
-    padding: 5,
-  },
-  text: {
-    fontSize: 20,
-    color: "black",
-  }
-});
 
 export default App;
