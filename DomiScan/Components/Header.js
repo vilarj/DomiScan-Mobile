@@ -1,25 +1,29 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { StyleSheet, View, SafeAreaView, Text, Image } from "react-native";
 
-export default class Header extends React.Component {
-  render() {
-    return (
-      <SafeAreaView style={styles.header}>
-        <Text style={styles.title}>DomiScan</Text>
-      </SafeAreaView>
-    );
-  }
+export default function Header({ navigation }) {
+  return (
+    <SafeAreaView style={styles.header}>
+      {/* <Image source={require("../assets/favicon.png")} style={styles.icon} /> */}
+      <Text style={styles.title}>DomiScan</Text>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
   header: {
     width: "100%",
-    height: "15%",
+    height: "18%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#eee",
   },
   title: {
-    fontSize: 30,
+    fontSize: 45,
+    fontFamily: "Cochin",
   },
+  icon: {
+    width: 26,
+    height: 26,
+  }
 });

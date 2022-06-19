@@ -35,6 +35,7 @@ export default function Body() {
     <View>
       {/* Main View */}
       <View style={styles.container}>
+
         {/* Players */}
         <View style={styles.players}>
           <View style={styles.inner}>
