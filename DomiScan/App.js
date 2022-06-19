@@ -8,7 +8,7 @@ import DominoesScreen from "./Components/DominoesScreen";
 
 import { View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const App = () => {
   return (
@@ -25,16 +25,16 @@ const App = () => {
   );
 };
 
-// function screens() {
-//   <Stack.Navigator>
+function screens() {
+  <Stack.Navigator>
 
-//     <Stack.Screen>
-//       name="Dominoes"
-//       component={DominoesScreen}
-//       options={{ title: 'Dominoes' }}
-//     </Stack.Screen>
+    <Stack.Screen>
+      name="Dominoes"
+      component={DominoesScreen}
+      options={{ title: 'Dominoes' }}
+    </Stack.Screen>
 
-//   </Stack.Navigator>
-// }
+  </Stack.Navigator>
+}
 
 export default App;

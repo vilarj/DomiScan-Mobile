@@ -1,25 +1,25 @@
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
+import DominoesScreen from './DominoesScreen';
 
 export default function CameraButton() {
+    const Touchable = Platform.select({ ios: TouchableOpacity, android: TouchableWithoutFeedback });
+
     return (
-        <TouchableOpacity style={styles.centered_button}>
-            <TouchableOpacity
+        <View style={{ alignItems: "center", }}>
+            <Touchable
                 onPress={() => {
-                    navigation.navigate('Dominoes', { screens })
+                    navigation.navigate('Dominoes', { DominoesScreen })
                 }}
                 style={styles.button}
             >
                 <Text style={styles.text}>Scan Dominoes</Text>
-            </TouchableOpacity>
-        </TouchableOpacity>
+            </Touchable>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    centered_button: {
-        alignItems: "center",
-    },
     button: {
         alignItems: "center",
         backgroundColor: "#eee",

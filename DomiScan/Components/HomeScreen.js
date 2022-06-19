@@ -5,7 +5,9 @@ import App from "../App"
 const HomeScreen = () => {
     return (
         <View>
-            <App />
+            <Text>
+                Hello
+            </Text>
         </View>
     )
 }
