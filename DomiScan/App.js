@@ -15,8 +15,8 @@ const App = () => {
       <Header />
       <Body />
       {/* <Backend /> */}
-      {/* <Camera2 /> */}
-      <CameraButton />
+      <Camera2 />
+      {/* <CameraButton /> */}
     </View>
   );
 };

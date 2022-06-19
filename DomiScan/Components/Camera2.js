@@ -38,6 +38,7 @@ export default function Camera2() {
 
         <Button
           title="Flip"
+          color="black"
           onPress={() => {
             setType(
               type === Camera.Constants.Type.back
@@ -47,7 +48,11 @@ export default function Camera2() {
           }}
         />
 
-        <Button title="Scan Dominoes" onPress={() => takePicture()} />
+        <Button
+          title="Scan Dominoes"
+          color="black"
+          onPress={() => takePicture()}
+        />
         {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
@@ -62,6 +67,6 @@ const styles = StyleSheet.create({
   },
   fixedRatio: {
     flex: 1,
-    aspectRatio: 0.6,
+    aspectRatio: 0.5,
   },
 });
