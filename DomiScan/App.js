@@ -4,9 +4,8 @@ import Body from "./Components/Body";
 import Backend from "./Backend/Backend";
 import CameraButton from "./Components/CameraButton";
 import Camera2 from "./Components/Camera2";
-import Styles from "./Styles/Styles";
 
-import { View, Appearance } from "react-native";
+import { View, Text } from "react-native";
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -17,7 +16,7 @@ const App = () => {
       <Body />
       {/* <Backend /> */}
       {/* <Camera2 /> */}
-      {/* <CameraButton /> */}
+      <CameraButton />
     </View>
   );
 };

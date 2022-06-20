@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput, Appearance, Text, Button } from "react-native";
 import Styles from "../Styles/Styles";
 
 export default function Body() {
@@ -12,12 +12,25 @@ export default function Body() {
     setTheme(scheme)
   })
 
-  const add25 = () => {
-    console.warn("25");
+  const Add25 = (name, values) => {
+    if (name == "playerOne") {
+      handleChange(name, values)
+    }
+
+    else {
+      handleChange(name, values)
+    }
+
   };
 
-  const add50 = () => {
-    console.warn("50");
+  const Add50 = (name, values) => {
+    if (name == "playerOne") {
+      handleChange(name, values)
+    }
+
+    else {
+      handleChange(name, values)
+    }
   };
 
   function calculateScores(input) {
@@ -30,6 +43,7 @@ export default function Body() {
 
   function handleChange(name, values) {
     let playerScore = calculateScores(values);
+
     if (playerScore)
       setScore((prevScores) => ({
         ...prevScores,
@@ -38,7 +52,7 @@ export default function Body() {
   }
 
   return (
-    <View>
+    <View style={theme == 'light' ? Styles.body : Styles.body_dark}>
       {/* Main View */}
       <View style={Styles.container}>
 
@@ -96,6 +110,55 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Text>{scores.playerTwo}</Text>
+          </View>
+        </View>
+
+        {/* Add Buttons */}
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
+            <Button
+              title="Add 25"
+              onPress={() => {
+                Add25("playerOne", "25")
+              }}
+              color="#000"
+            />
+          </View>
+        </View>
+
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
+            <Button
+              title="Add 25"
+              onPress={() => {
+                Add25("playerTwo", 25)
+              }}
+              color="#000"
+            />
+          </View>
+        </View>
+
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
+            <Button
+              title="Add 50"
+              onPress={() => {
+                Add50("playerOne", 50)
+              }}
+              color="#000"
+            />
+          </View>
+        </View>
+
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
+            <Button
+              title="Add 50"
+              onPress={() => {
+                Add50("playerTwo", 50)
+              }}
+              color="#000"
+            />
           </View>
         </View>
 

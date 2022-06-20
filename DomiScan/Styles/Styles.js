@@ -27,6 +27,12 @@ const DarkMode = StyleSheet.create({
     // Header Ends
 
     // Body Starts
+    body_light: {
+        backgroundColor: "#fff"
+    },
+    body_dark: {
+        backgroundColor: "#000"
+    },
     container: {
         width: "100%",
         height: "60%",
@@ -60,6 +66,12 @@ const DarkMode = StyleSheet.create({
         backgroundColor: "#000",
         alignItems: "center",
         justifyContent: "center",
+    },
+    add25_dark: {
+        color: "#000"
+    },
+    add50_dark: {
+        color: "000"
     },
     // Body Ends
 
