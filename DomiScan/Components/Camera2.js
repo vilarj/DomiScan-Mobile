@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, Button } from "react-native";
 import React, { useState, useEffect } from "react";
+import Styles from "../Styles/Styles";
 import { Camera } from "expo-camera";
 
 export default function Camera2() {
@@ -28,10 +29,10 @@ export default function Camera2() {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.cameraContainer}>
+      <View style={Styles.cameraContainer}>
         <Camera
           ref={(ref) => setCamera(ref)}
-          style={styles.fixedRatio}
+          style={Styles.fixedRatio}
           type={type}
           ratio={"1:1"}
         />
@@ -58,15 +59,3 @@ export default function Camera2() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  cameraContainer: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  fixedRatio: {
-    flex: 1,
-    aspectRatio: 0.5,
-  },
-});

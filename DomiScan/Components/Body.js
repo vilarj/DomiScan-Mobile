@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Text } from "react-native";
+import { View, TextInput, Text } from "react-native";
+import Styles from "../Styles/Styles";
 
 export default function Body() {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
   const [name1, setName1] = useState("");
   const [name2, setName2] = useState("");
+  const [theme, setTheme] = useState(Appearance.getColorScheme())
+
+  Appearance.addChangeListener((scheme) => {
+    setTheme(scheme)
+  })
 
   const add25 = () => {
     console.warn("25");
@@ -34,11 +40,11 @@ export default function Body() {
   return (
     <View>
       {/* Main View */}
-      <View style={styles.container}>
+      <View style={Styles.container}>
 
         {/* Players */}
-        <View style={styles.players}>
-          <View style={styles.inner}>
+        <View style={Styles.players}>
+          <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
               onChangeText={setName1}
@@ -48,8 +54,8 @@ export default function Body() {
           </View>
         </View>
 
-        <View style={styles.players}>
-          <View style={styles.inner}>
+        <View style={Styles.players}>
+          <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
               onChangeText={setName2}
@@ -60,8 +66,8 @@ export default function Body() {
         </View>
 
         {/* Body */}
-        <View style={styles.box}>
-          <View style={styles.inner}>
+        <View style={Styles.box}>
+          <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
               editable
@@ -70,8 +76,8 @@ export default function Body() {
           </View>
         </View>
 
-        <View style={styles.box}>
-          <View style={styles.inner}>
+        <View style={Styles.box}>
+          <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
               editable
@@ -81,14 +87,14 @@ export default function Body() {
         </View>
 
         {/* Total */}
-        <View style={styles.total_score}>
-          <View style={styles.inner}>
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
             <Text>{scores.playerOne}</Text>
           </View>
         </View>
 
-        <View style={styles.total_score}>
-          <View style={styles.inner}>
+        <View style={Styles.total_score}>
+          <View style={Styles.inner}>
             <Text>{scores.playerTwo}</Text>
           </View>
         </View>
@@ -98,34 +104,3 @@ export default function Body() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "60%",
-    padding: 5,
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  players: {
-    width: "50%",
-    height: "20%",
-    padding: 5,
-  },
-  total_score: {
-    width: "50%",
-    height: "20%",
-    padding: 5,
-  },
-  box: {
-    width: "50%",
-    height: "60%",
-    padding: 5,
-  },
-  inner: {
-    flex: 1,
-    backgroundColor: "#eee",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
