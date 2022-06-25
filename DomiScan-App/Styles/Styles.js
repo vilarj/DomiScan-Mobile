@@ -18,7 +18,6 @@ const DarkMode = StyleSheet.create({
     },
     title: {
         fontSize: 45,
-        fontFamily: "Cochin",
     },
     icon: {
         width: 26,
@@ -85,6 +84,23 @@ const DarkMode = StyleSheet.create({
         flex: 1,
         aspectRatio: 0.5,
     },
+    camera_button: {
+        alignItems: "center",
+        backgroundColor: "#eee",
+        width: 145,
+        height: 145,
+        marginTop: 5,
+        padding: 5,
+        borderRadius: 100,
+        justifyContent: "center",
+    },
+    camera_text: {
+        fontSize: 20,
+        color: "black",
+        fontFamily: "Cochin",
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
     // Camera Ends
 })
 

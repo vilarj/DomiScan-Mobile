@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { View, TextInput, Appearance, Text, Button } from "react-native";
+import { View, TextInput, Appearance, Text, Pressable } from "react-native";
 import Styles from "../Styles/Styles";
 
 export default function Body() {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
-  const [name1, setName1] = useState("");
-  const [name2, setName2] = useState("");
   const [theme, setTheme] = useState(Appearance.getColorScheme())
 
   Appearance.addChangeListener((scheme) => {
@@ -61,7 +59,6 @@ export default function Body() {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
-              onChangeText={setName1}
               editable
               maxLength={20}
             />
@@ -72,7 +69,6 @@ export default function Body() {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
-              onChangeText={setName2}
               editable
               maxLength={20}
             />
@@ -116,49 +112,33 @@ export default function Body() {
         {/* Add Buttons */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Button
-              title="Add 25"
-              onPress={() => {
-                Add25("playerOne", "25")
-              }}
-              color="#000"
-            />
+            <Pressable onPress={() => {Add25("playerOne", 25)}}>
+              <Text>Add 25</Text>
+            </Pressable>
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Button
-              title="Add 25"
-              onPress={() => {
-                Add25("playerTwo", 25)
-              }}
-              color="#000"
-            />
+            <Pressable onPress={() => {Add25("playerTwo", 25)}}>
+              <Text>Add 25</Text>
+            </Pressable>
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Button
-              title="Add 50"
-              onPress={() => {
-                Add50("playerOne", 50)
-              }}
-              color="#000"
-            />
+            <Pressable onPress={() => {Add50("playerOne", 50)}}>
+              <Text>Add 50</Text>
+            </Pressable>
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Button
-              title="Add 50"
-              onPress={() => {
-                Add50("playerTwo", 50)
-              }}
-              color="#000"
-            />
+            <Pressable onPress={() => {Add50("playerTwo", 50)}}>
+              <Text>Add 50</Text>
+            </Pressable>
           </View>
         </View>
 

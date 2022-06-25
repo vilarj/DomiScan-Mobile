@@ -36,13 +36,13 @@ Working on it...
 
 # Dependencies
 
-- Camera Module: `expo install expo-camera`
-- EAS build: `npm install -g eas-cli`
-- React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context`
+### Frontend
+- Camera Module: `expo install expo-camera` (Required)
+- EAS build: `npm install -g eas-cli` (Not Required)
+- React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context` (Required)
 
 ### Backend
 - Python3
-- Flask: `pip3 install Flask`
-- Flask SQL Alchemy: `pip3 install Flask-SQLAlchemy`
-- mysqlclient: `pip3 install mysqlclient`
-- Flask Marsmallow: `pip3 install flask-mashmallow`
+- Flask: `pip3 install Flask` (Required)
+- Pandas: `pip3 install pandas` (Required)
+- OpenCV: `pip3 install opencv-python ` (Required)
