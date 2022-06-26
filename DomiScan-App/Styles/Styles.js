@@ -26,7 +26,7 @@ const DarkMode = StyleSheet.create({
     // Header Ends
 
     // Body Starts
-    body_light: {
+    body: {
         backgroundColor: "#fff"
     },
     body_dark: {
@@ -34,7 +34,7 @@ const DarkMode = StyleSheet.create({
     },
     container: {
         width: "100%",
-        height: "60%",
+        height: "70%",
         padding: 5,
         flexDirection: "row",
         flexWrap: "wrap",
