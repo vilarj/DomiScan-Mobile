@@ -1,15 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, TextInput, Appearance, Text, Pressable } from "react-native";
 import Styles from "../Styles/Styles";
 
 export default function Body() {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
   const [theme, setTheme] = useState(Appearance.getColorScheme())
+  const [userInput, setUserInput] = useState({ playerOne: "", playerTwo: "" });
+
 
   Appearance.addChangeListener((scheme) => {
     setTheme(scheme)
   })
 
+  useEffect(() => {
+    updateScore('playerOne', userInput.playerOne);
+    updateScore('playerTwo', userInput.playerTwo);
+
+  }, [userInput]);
+
+  const Add = (name, amount) => {
+   
+    setUserInput((prevValues) => ({
+      ...prevValues,
+      [name]: userInput[name] + "," + String(amount),
+    }));
+
+    //handleChange(name, userInput[name]);
+  }
+  
+
+
+  
+  /*
   const Add25 = (name, values) => {
     if (name == "playerOne") {
       handleChange(name, values)
@@ -30,6 +52,7 @@ export default function Body() {
       handleChange(name, values)
     }
   };
+  */
 
   function calculateScores(input) {
     let inputStr = String(input).split(",");
@@ -38,15 +61,26 @@ export default function Body() {
 
     return sum;
   }
-
-  function handleChange(name, values) {
+  function updateScore(player, values)
+  {
     let playerScore = calculateScores(values);
-
     if (playerScore)
-      setScore((prevScores) => ({
-        ...prevScores,
-        [name]: playerScore,
-      }));
+    setScore((prevScores) => ({
+      ...prevScores,
+      [player]: playerScore,
+    }));
+  }
+  function handleChange(name, values) {
+
+    setUserInput((inputValues) => ({
+      ...inputValues,
+      [name]: values,
+    }));
+
+    updateScore(name, values);
+
+    
+
   }
 
   return (
@@ -80,6 +114,7 @@ export default function Body() {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
+              value = {userInput.playerOne}
               editable
               onChangeText={(value) => handleChange("playerOne", value)}
             />
@@ -90,6 +125,7 @@ export default function Body() {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
+              value = {userInput.playerTwo}
               editable
               onChangeText={(value) => handleChange("playerTwo", value)}
             />
@@ -112,7 +148,7 @@ export default function Body() {
         {/* Add Buttons */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => {Add25("playerOne", 25)}}>
+            <Pressable onPress={() => {Add("playerOne", 25)}}>
               <Text>Add 25</Text>
             </Pressable>
           </View>
@@ -120,7 +156,7 @@ export default function Body() {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => {Add25("playerTwo", 25)}}>
+            <Pressable onPress={() => {Add("playerTwo", 25)}}>
               <Text>Add 25</Text>
             </Pressable>
           </View>
@@ -128,7 +164,7 @@ export default function Body() {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => {Add50("playerOne", 50)}}>
+            <Pressable onPress={() => {Add("playerOne", 50)}}>
               <Text>Add 50</Text>
             </Pressable>
           </View>
@@ -136,7 +172,7 @@ export default function Body() {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => {Add50("playerTwo", 50)}}>
+            <Pressable onPress={() => {Add("playerTwo", 50)}}>
               <Text>Add 50</Text>
             </Pressable>
           </View>
