@@ -36,10 +36,15 @@ Working on it...
 
 # Dependencies
 
+### Node & Expo
+Node: `npm install`
+Expo Cli: `npm install -g expo-cli`
+
 ### Frontend
 - Camera Module: `expo install expo-camera` (Required)
 - EAS build: `npm install -g eas-cli` (Not Required)
 - React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context` (Required)
+- Icons: `react-native-paper`, `react-native-vector-icons`
 
 ### Backend
 - Python3

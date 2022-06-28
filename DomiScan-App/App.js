@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import Body from "./Components/Body";
 import Styles from './Styles/Styles'
 
-import { View, Text, Pressable, Button } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { Camera } from "expo-camera";
+import { Avatar, IconButton } from 'react-native-paper'
 
 function Home({ navigation }) {
   return (
@@ -59,25 +60,34 @@ function Cam() {
           style={Styles.fixedRatio}
           type={type}
           ratio={"1:1"}
-        />
+        >
+          <View style={Styles.cam_buttons1}>
+            <IconButton
+              icon="camera-flip-outline"
+              size={40}
+              color={"yellow"}
+              onPress={() => {
+                setType(
+                  type === Camera.Constants.Type.back
+                    ? Camera.Constants.Type.front
+                    : Camera.Constants.Type.back
+                );
+              }}
+            />
+          </View>
 
-        <Button
-          title="Flip"
-          color="black"
-          onPress={() => {
-            setType(
-              type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-            );
-          }}
-        />
+          <View style={Styles.cam_buttons2}>
+            <Avatar.Icon
+              icon="camera"
+              size={80}
+              color={"yellow"}
+              style={{ backgroundColor: "black" }}
+              onPress={() => takePicture()}
+            />
+          </View>
 
-        <Button
-          title="Scan Dominoes"
-          color="black"
-          onPress={() => takePicture()}
-        />
+        </Camera>
+
         {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
@@ -94,13 +104,31 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'DomiScan' }}
+          options={{
+            title: 'DomiScan',
+            headerStyle: {
+              backgroundColor: "#eee"
+            },
+            headerTintColor: "black",
+            headerTitleStyle: {
+              fontSize: 30,
+            },
+          }}
         />
 
         <Stack.Screen
           name="Cam"
           component={Cam}
-          options={{ title: 'Scan Dominoes' }}
+          options={{
+            title: 'Scan Dominoes',
+            headerStyle: {
+              backgroundColor: "#000"
+            },
+            headerTintColor: "yellow",
+            headerTitleStyle: {
+              fontSize: 20,
+            },
+          }}
         />
 
       </Stack.Navigator>

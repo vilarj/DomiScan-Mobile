@@ -1,30 +1,6 @@
 import { StyleSheet } from 'react-native'
 
 const DarkMode = StyleSheet.create({
-    // Header Starts
-    header: {
-        width: "100%",
-        height: "18%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#eee",
-    },
-    header_dark: {
-        width: "100%",
-        height: "18%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000",
-    },
-    title: {
-        fontSize: 45,
-    },
-    icon: {
-        width: 26,
-        height: 26,
-    },
-    // Header Ends
-
     // Body Starts
     body: {
         backgroundColor: "#fff"
@@ -33,8 +9,7 @@ const DarkMode = StyleSheet.create({
         backgroundColor: "#000"
     },
     container: {
-        width: "100%",
-        height: "70%",
+        height: "72%",
         padding: 5,
         flexDirection: "row",
         flexWrap: "wrap",
@@ -66,19 +41,13 @@ const DarkMode = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    add25_dark: {
-        color: "#000"
-    },
-    add50_dark: {
-        color: "000"
-    },
     // Body Ends
 
     // Camera Begins
     cameraContainer: {
-        flex: 1,
         flexDirection: "row",
-        alignItems: "center",
+        height: "100%",
+        width: "100%",
     },
     fixedRatio: {
         flex: 1,
@@ -94,13 +63,33 @@ const DarkMode = StyleSheet.create({
         borderRadius: 100,
         justifyContent: "center",
     },
-    camera_text: {
-        fontSize: 20,
-        color: "black",
-        fontFamily: "Cochin",
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
+    camera_button_dark: {
+        alignItems: "center",
+        backgroundColor: "#000",
+        width: 145,
+        height: 145,
+        marginTop: 5,
+        padding: 5,
+        borderRadius: 100,
+        justifyContent: "center",
+    },
+    cam_buttons1: {
+        flex: 0.1,
+        flexDirection: "column",
+        position: "absolute",
+        top: 1,
+        left: 10,
+        margin: 10,
+    },
+    cam_buttons2: {
+        flex: 0.1,
+        flexDirection: "column",
+        position: "absolute",
+        bottom: 50,
+        right: 10,
+        margin: 10,
+
+    },
     // Camera Ends
 })
 
