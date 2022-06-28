@@ -16,44 +16,19 @@ export default function Body() {
     updateScore('playerOne', userInput.playerOne);
     updateScore('playerTwo', userInput.playerTwo);
 
+
   }, [userInput]);
 
   const Add = (name, amount) => {
-   
+    let lastChar = userInput[name][userInput[name].length - 1];
     setUserInput((prevValues) => ({
       ...prevValues,
-      [name]: userInput[name] + "," + String(amount),
+      [name]: lastChar == ',' ||  lastChar == undefined ? userInput[name] + String(amount) : userInput[name] + ',' + String(amount)
     }));
+    console.log(lastChar);
 
-    //handleChange(name, userInput[name]);
   }
   
-
-
-  
-  /*
-  const Add25 = (name, values) => {
-    if (name == "playerOne") {
-      handleChange(name, values)
-    }
-
-    else {
-      handleChange(name, values)
-    }
-
-  };
-
-  const Add50 = (name, values) => {
-    if (name == "playerOne") {
-      handleChange(name, values)
-    }
-
-    else {
-      handleChange(name, values)
-    }
-  };
-  */
-
   function calculateScores(input) {
     let inputStr = String(input).split(",");
     let digits = inputStr.filter((value) => !isNaN(parseInt(value)));
@@ -76,11 +51,6 @@ export default function Body() {
       ...inputValues,
       [name]: values,
     }));
-
-    updateScore(name, values);
-
-    
-
   }
 
   return (
