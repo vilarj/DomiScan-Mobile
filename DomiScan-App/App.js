@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Body from "./Components/Body";
 import Styles from './Styles/Styles'
 
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Alert, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { Camera } from "expo-camera";
@@ -43,8 +43,33 @@ function Cam() {
 
   const takePicture = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync(null);
-      setImage(data.uri);
+      const photo = await camera.takePictureAsync({quality: 0.1});
+      let uri = photo.uri;
+
+      setImage(photo.uri);
+
+      const formData = new FormData();
+
+      formData.append('file', { 
+        uri, 
+        name: 'photo.${fileType}', 
+        type: 'image/${fileType}'
+      });
+      
+      fetch("https://domiscan-server-app.herokuapp.com/uploader", {
+        method:"POST",
+        body: formData,
+        headers: {
+          "content-type": "multipart/form-data"
+        }
+
+      })
+      .then(response => { 
+        return response.text()
+      })
+      .then(data => Alert.alert(data))
+      .catch(error => Alert.alert("Error"));
+
     }
   };
 
@@ -77,7 +102,7 @@ function Cam() {
           </View>
 
           <View style={Styles.cam_buttons2}>
-            <Avatar.Icon
+            <IconButton
               icon="camera"
               size={80}
               color={"yellow"}
@@ -88,7 +113,7 @@ function Cam() {
 
         </Camera>
 
-        {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
+        {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
       </View>
     </View>
   );
