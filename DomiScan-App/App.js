@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { Camera } from "expo-camera";
 import { Avatar, IconButton } from 'react-native-paper'
+import { manipulateAsync } from 'expo-image-manipulator';
 
 function Home({ navigation }) {
   return (
@@ -44,10 +45,13 @@ function Cam() {
   const takePicture = async () => {
     if (camera) {
       const photo = await camera.takePictureAsync({quality: 0.1});
-      let uri = photo.uri;
-
-      setImage(photo.uri);
-
+      const manipResult = await manipulateAsync(
+        photo.uri,
+        [{ resize: { width: 512, height: 512 } }],
+        { format: 'png' }
+      );
+      const uri = manipResult.uri;
+      setImage(uri);
       const formData = new FormData();
 
       formData.append('file', { 
@@ -55,7 +59,6 @@ function Cam() {
         name: 'photo.${fileType}', 
         type: 'image/${fileType}'
       });
-      
       fetch("https://domiscan-server-app.herokuapp.com/uploader", {
         method:"POST",
         body: formData,
