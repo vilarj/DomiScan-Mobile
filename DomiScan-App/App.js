@@ -44,21 +44,24 @@ function Cam() {
 
   const takePicture = async () => {
     if (camera) {
+      const fileType = 'png';
       const photo = await camera.takePictureAsync({quality: 0.1});
       const manipResult = await manipulateAsync(
         photo.uri,
         [{ resize: { width: 512, height: 512 } }],
-        { format: 'png' }
+        { format: fileType }
       );
+  
       const uri = manipResult.uri;
       setImage(uri);
       const formData = new FormData();
 
       formData.append('file', { 
         uri, 
-        name: 'photo.${fileType}', 
-        type: 'image/${fileType}'
+        name: `photo.${fileType}`, 
+        type: `image/${fileType}`
       });
+
       fetch("https://domiscan-server-app.herokuapp.com/uploader", {
         method:"POST",
         body: formData,
