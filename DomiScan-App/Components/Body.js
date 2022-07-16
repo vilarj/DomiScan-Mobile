@@ -148,7 +148,6 @@ export default function Body() {
             </Pressable>
           </View>
         </View>
-
         {/* End of Main View */}
       </View>
     </View>

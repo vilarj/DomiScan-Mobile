@@ -25,6 +25,10 @@ function Home({ navigation }) {
 
       </View>
 
+      <View style={{ padding: 30 }}>
+        <View></View>
+      </View>
+
     </View >
   )
 }
