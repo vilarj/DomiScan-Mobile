@@ -15,8 +15,6 @@ export default function Body() {
   useEffect(() => {
     updateScore('playerOne', userInput.playerOne);
     updateScore('playerTwo', userInput.playerTwo);
-
-
   }, [userInput]);
 
   const Add = (name, amount) => {
@@ -120,7 +118,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerOne", 25) }}>
-              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 25</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
         </View>
@@ -128,7 +126,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerTwo", 25) }}>
-              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 25</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
         </View>
@@ -136,7 +134,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerOne", 50) }}>
-              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 50</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
         </View>
@@ -144,7 +142,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerTwo", 50) }}>
-              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 50</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
         </View>
