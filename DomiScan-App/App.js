@@ -6,7 +6,7 @@ import { View, Text, Pressable, Alert, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { Camera } from "expo-camera";
-import { Avatar, IconButton } from 'react-native-paper'
+import { IconButton } from 'react-native-paper'
 import { manipulateAsync } from 'expo-image-manipulator';
 
 function Home({ navigation }) {
@@ -29,7 +29,30 @@ function Home({ navigation }) {
   )
 }
 
-function Cam() {
+function Cam({ navigation }) {
+  const promptUser = (score) => {
+    Alert.alert(
+      "The Dominoes Were Scanned!",
+      "Who do you want to send the scanned score to?",
+      [
+        {
+          text: "Player 1",
+          style: "destructive",
+          onPress: () =>
+            // Call Add("playerOne", score)
+            navigation.navigate('Home')
+        },
+        {
+          text: "Player 2",
+          style: "default",
+          onPress: () =>
+            // Call Add("playerTwo", score)
+            navigation.navigate('Home')
+        }
+      ]
+    );
+  }
+
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
@@ -45,36 +68,36 @@ function Cam() {
   const takePicture = async () => {
     if (camera) {
       const fileType = 'png';
-      const photo = await camera.takePictureAsync({quality: 0.1});
+      const photo = await camera.takePictureAsync({ quality: 0.1 });
       const manipResult = await manipulateAsync(
         photo.uri,
         [{ resize: { width: 512, height: 512 } }],
         { format: fileType }
       );
-  
+
       const uri = manipResult.uri;
       setImage(uri);
       const formData = new FormData();
 
-      formData.append('file', { 
-        uri, 
-        name: `photo.${fileType}`, 
+      formData.append('file', {
+        uri,
+        name: `photo.${fileType}`,
         type: `image/${fileType}`
       });
 
       fetch("https://domiscan-server-app.herokuapp.com/uploader", {
-        method:"POST",
+        method: "POST",
         body: formData,
         headers: {
           "content-type": "multipart/form-data"
         }
 
       })
-      .then(response => { 
-        return response.text()
-      })
-      .then(data => Alert.alert(data))
-      .catch(error => Alert.alert("Error"));
+        .then(response => {
+          return response.text()
+        })
+        .then(data => promptUser(data))
+        .catch(error => Alert.alert(error + ". Try again"));
 
     }
   };
@@ -91,6 +114,7 @@ function Cam() {
           style={Styles.fixedRatio}
           type={type}
           ratio={"1:1"}
+          autoFocus={Camera.Constants.AutoFocus.on}
         >
           <View style={Styles.cam_buttons1}>
             <IconButton
@@ -119,7 +143,7 @@ function Cam() {
 
         </Camera>
 
-        {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
+        {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
   );

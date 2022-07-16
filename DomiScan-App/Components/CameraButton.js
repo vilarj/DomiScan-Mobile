@@ -8,7 +8,7 @@ export default CameraButton = (navigation) => {
     return (
         <View style={{ alignItems: "center" }}>
             <Touchable onPress={() => navigation.navigate('Cam')} style={Styles.camera_button}>
-                <Text style={Styles.camera_text}>Scan Dominoes</Text>
+                <Text>Scan Dominoes</Text>
             </Touchable>
         </View>
     )

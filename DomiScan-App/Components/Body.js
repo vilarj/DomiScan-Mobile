@@ -23,7 +23,8 @@ export default function Body() {
     let lastChar = userInput[name][userInput[name].length - 1];
     setUserInput((prevValues) => ({
       ...prevValues,
-      [name]: lastChar == ',' || lastChar == undefined ? userInput[name] + String(amount) : userInput[name] + ',' + String(amount)
+      [name]: lastChar == ',' || lastChar == undefined ? userInput[name]
+        + String(amount) : userInput[name] + ',' + String(amount)
     }));
   }
 
@@ -34,6 +35,7 @@ export default function Body() {
 
     return sum;
   }
+
   function updateScore(player, values) {
     let playerScore = calculateScores(values);
     if (playerScore)
@@ -42,8 +44,8 @@ export default function Body() {
         [player]: playerScore,
       }));
   }
-  function handleChange(name, values) {
 
+  function handleChange(name, values) {
     setUserInput((inputValues) => ({
       ...inputValues,
       [name]: values,
@@ -61,6 +63,7 @@ export default function Body() {
             <TextInput
               placeholder="Enter Name"
               editable
+              style={{ fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
             />
           </View>
@@ -71,6 +74,7 @@ export default function Body() {
             <TextInput
               placeholder="Enter Name"
               editable
+              style={{ fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
             />
           </View>
@@ -116,7 +120,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerOne", 25) }}>
-              <Text>Add 25</Text>
+              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
         </View>
@@ -124,7 +128,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerTwo", 25) }}>
-              <Text>Add 25</Text>
+              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
         </View>
@@ -132,7 +136,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerOne", 50) }}>
-              <Text>Add 50</Text>
+              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
         </View>
@@ -140,7 +144,7 @@ export default function Body() {
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
             <Pressable onPress={() => { Add("playerTwo", 50) }}>
-              <Text>Add 50</Text>
+              <Text style={{ fontWeight: "600", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
         </View>
