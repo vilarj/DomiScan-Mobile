@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Body from "./Components/Body";
 import Styles from './Styles/Styles'
 
+
 import { View, Text, Pressable, Alert, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -35,23 +36,29 @@ function Home({ navigation }) {
 
 function Cam({ navigation }) {
   const promptUser = (score) => {
+    Alert.alert(score);
     Alert.alert(
       "The Dominoes Were Scanned!",
       "Who do you want to send the scanned score to?",
+      
       [
         {
           text: "Player 1",
           style: "destructive",
           onPress: () =>
+          {
             // Call Add("playerOne", score)
-            navigation.navigate('Home')
+            navigation.navigate('Home');
+          }
         },
         {
           text: "Player 2",
           style: "default",
           onPress: () =>
+          {
             // Call Add("playerTwo", score)
-            navigation.navigate('Home')
+            navigation.navigate('Home');
+          }
         }
       ]
     );
@@ -75,7 +82,7 @@ function Cam({ navigation }) {
       const photo = await camera.takePictureAsync({ quality: 0.1 });
       const manipResult = await manipulateAsync(
         photo.uri,
-        [{ resize: { width: 512, height: 512 } }],
+        [{ resize: { width: 540, height: 960   } }],
         { format: fileType }
       );
 
@@ -88,7 +95,6 @@ function Cam({ navigation }) {
         name: `photo.${fileType}`,
         type: `image/${fileType}`
       });
-
       fetch("https://domiscan-server-app.herokuapp.com/uploader", {
         method: "POST",
         body: formData,
