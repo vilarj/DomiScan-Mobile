@@ -10,11 +10,14 @@ import { Camera } from "expo-camera";
 import { IconButton } from 'react-native-paper'
 import { manipulateAsync } from 'expo-image-manipulator';
 
-function Home({ navigation }) {
+
+function Home({ route, navigation }) {
+
+
   return (
     <View style={Styles.body}>
 
-      <Body />
+      <Body route = {route}/>
 
       <View style={{ alignItems: "center" }}>
 
@@ -36,7 +39,6 @@ function Home({ navigation }) {
 
 function Cam({ navigation }) {
   const promptUser = (score) => {
-    Alert.alert(score);
     Alert.alert(
       "The Dominoes Were Scanned!",
       "Who do you want to send the scanned score to?",
@@ -48,7 +50,8 @@ function Cam({ navigation }) {
           onPress: () =>
           {
             // Call Add("playerOne", score)
-            navigation.navigate('Home');
+            
+            navigation.navigate('Home', { playerOneScore: score });
           }
         },
         {
@@ -57,7 +60,8 @@ function Cam({ navigation }) {
           onPress: () =>
           {
             // Call Add("playerTwo", score)
-            navigation.navigate('Home');
+            navigation.navigate('Home', { playerTwoScore:score });
+            
           }
         }
       ]
@@ -165,7 +169,7 @@ const App = () => {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
           component={Home}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, TextInput, Appearance, Text, Pressable } from "react-native";
 import Styles from "../Styles/Styles";
 
-export default function Body() {
+export default function Body({route}) {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
   const [theme, setTheme] = useState(Appearance.getColorScheme())
   const [userInput, setUserInput] = useState({ playerOne: "", playerTwo: "" });
@@ -16,6 +16,8 @@ export default function Body() {
     updateScore('playerOne', userInput.playerOne);
     updateScore('playerTwo', userInput.playerTwo);
   }, [userInput]);
+
+ 
 
   const Add = (name, amount) => {
     let lastChar = userInput[name][userInput[name].length - 1];
@@ -48,6 +50,22 @@ export default function Body() {
       ...inputValues,
       [name]: values,
     }));
+  }
+
+  if(route.params)
+  {
+    if(route.params.playerOneScore > 0)
+    {
+
+      Add('playerOne', route.params.playerOneScore);
+      route.params.playerOneScore = 0;
+
+    }
+    if(route.params.playerTwoScore > 0)
+    {
+      Add('playerTwo', route.params.playerTwoScore);
+      route.params.playerTwoScore = 0
+    }
   }
 
   return (
