@@ -4,6 +4,7 @@
 - [Origins](#Origin)
 - [Problem](#Problem)
 - [Features](#Features)
+- [UI](#UI)
 - [Download the App](#Download)
 
 # <a name="DomiScan"></a> DomiScan
@@ -30,8 +31,10 @@ There is one process during the game that takes a lot of time and it can be misl
 - [x] Sum the resulting Dominoes :iphone:
 - [x] Place result in correct player :heavy_check_mark:
 
-# <a name="Download"></a> Download the App
+# <a name="UI"></a> UI
+![Actual UI](./assets/UI.PNG)
 
+# <a name="Download"></a> Download the App
 Working on it...
 
 # Dependencies
