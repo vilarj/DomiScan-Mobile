@@ -75,8 +75,6 @@ function Cam({ navigation }) {
 
   const takePicture = async () => {
     if (camera) {
-      Alert.alert("Counting the Dominoes...")
-
       const fileType = 'png';
       const photo = await camera.takePictureAsync({ quality: 0.1 });
       const manipResult = await manipulateAsync(
