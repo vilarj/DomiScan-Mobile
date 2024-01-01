@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const DarkMode = StyleSheet.create({
   // Body Starts
-  statusBar: {},
   body: {
     backgroundColor: "#fff",
   },

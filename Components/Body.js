@@ -73,7 +73,7 @@ export default function Body({ route }) {
               placeholder="Enter Name"
               placeholderTextColor={"gray"}
               editable
-              style={{ fontSize: 18, fontStyle: "italic" }}
+              style={{ color: "blue", fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
             />
           </View>
@@ -85,7 +85,7 @@ export default function Body({ route }) {
               placeholder="Enter Name"
               placeholderTextColor={"gray"}
               editable
-              style={{ fontSize: 18, fontStyle: "italic" }}
+              style={{ color: "red", fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
             />
           </View>
@@ -99,6 +99,7 @@ export default function Body({ route }) {
               placeholderTextColor={"gray"}
               value={userInput.playerOne}
               editable
+              style={{ color: "blue" }}
               onChangeText={(value) => handleChange("playerOne", value)}
             />
           </View>
@@ -111,6 +112,7 @@ export default function Body({ route }) {
               placeholderTextColor={"gray"}
               value={userInput.playerTwo}
               editable
+              style={{ color: "red" }}
               onChangeText={(value) => handleChange("playerTwo", value)}
             />
           </View>
@@ -119,13 +121,13 @@ export default function Body({ route }) {
         {/* Total */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text>{scores.playerOne}</Text>
+            <Text style={{ color: "blue" }}>{scores.playerOne}</Text>
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text>{scores.playerTwo}</Text>
+            <Text style={{ color: "red" }}>{scores.playerTwo}</Text>
           </View>
         </View>
 

@@ -11,23 +11,20 @@ import { IconButton } from "react-native-paper";
 
 function Home({ route, navigation }) {
   return (
-    <View style={Styles.statusBar}>
+    <View style={Styles.body}>
+      <Body route={route} />
       <StatusBar barStyle="dark-content" />
-      <View style={Styles.body}>
-        <Body route={route} />
+      <View style={{ alignItems: "center" }}>
+        <Pressable
+          onPress={() => navigation.navigate("Cam")}
+          style={Styles.camera_button}
+        >
+          <Text>Scan Dominoes</Text>
+        </Pressable>
+      </View>
 
-        <View style={{ alignItems: "center" }}>
-          <Pressable
-            onPress={() => navigation.navigate("Cam")}
-            style={Styles.camera_button}
-          >
-            <Text>Scan Dominoes</Text>
-          </Pressable>
-        </View>
-
-        <View style={{ padding: 30 }}>
-          <View></View>
-        </View>
+      <View style={{ padding: 30 }}>
+        <View></View>
       </View>
     </View>
   );
