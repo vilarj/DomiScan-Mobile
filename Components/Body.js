@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Appearance, Text, Pressable } from "react-native";
+import { Appearance, Pressable, Text, TextInput, View } from "react-native";
 import Styles from "../Styles/Styles";
 
-export default function Body({route}) {
+export default function Body({ route }) {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
-  const [theme, setTheme] = useState(Appearance.getColorScheme())
+  const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [userInput, setUserInput] = useState({ playerOne: "", playerTwo: "" });
 
-
   Appearance.addChangeListener((scheme) => {
-    setTheme(scheme)
-  })
+    setTheme(scheme);
+  });
 
   useEffect(() => {
-    updateScore('playerOne', userInput.playerOne);
-    updateScore('playerTwo', userInput.playerTwo);
+    updateScore("playerOne", userInput.playerOne);
+    updateScore("playerTwo", userInput.playerTwo);
   }, [userInput]);
-
- 
 
   const Add = (name, amount) => {
     let lastChar = userInput[name][userInput[name].length - 1];
     setUserInput((prevValues) => ({
       ...prevValues,
-      [name]: lastChar == ',' || lastChar == undefined ? userInput[name]
-        + String(amount) : userInput[name] + ',' + String(amount)
+      [name]:
+        lastChar == "," || lastChar == undefined
+          ? userInput[name] + String(amount)
+          : userInput[name] + "," + String(amount),
     }));
-  }
+  };
 
   function calculateScores(input) {
     let inputStr = String(input).split(",");
@@ -52,32 +51,27 @@ export default function Body({route}) {
     }));
   }
 
-  if(route.params)
-  {
-    if(route.params.playerOneScore > 0)
-    {
-
-      Add('playerOne', route.params.playerOneScore);
+  if (route.params) {
+    if (route.params.playerOneScore > 0) {
+      Add("playerOne", route.params.playerOneScore);
       route.params.playerOneScore = 0;
-
     }
-    if(route.params.playerTwoScore > 0)
-    {
-      Add('playerTwo', route.params.playerTwoScore);
-      route.params.playerTwoScore = 0
+    if (route.params.playerTwoScore > 0) {
+      Add("playerTwo", route.params.playerTwoScore);
+      route.params.playerTwoScore = 0;
     }
   }
 
   return (
-    <View style={theme == 'light' ? Styles.body : Styles.body_dark}>
+    <View style={theme == "light" ? Styles.body : Styles.body_dark}>
       {/* Main View */}
       <View style={Styles.container}>
-
         {/* Players */}
         <View style={Styles.players}>
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
+              placeholderTextColor={"gray"}
               editable
               style={{ fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
@@ -89,6 +83,7 @@ export default function Body({route}) {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Name"
+              placeholderTextColor={"gray"}
               editable
               style={{ fontSize: 18, fontStyle: "italic" }}
               maxLength={20}
@@ -101,6 +96,7 @@ export default function Body({route}) {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
+              placeholderTextColor={"gray"}
               value={userInput.playerOne}
               editable
               onChangeText={(value) => handleChange("playerOne", value)}
@@ -112,6 +108,7 @@ export default function Body({route}) {
           <View style={Styles.inner}>
             <TextInput
               placeholder="Enter Score"
+              placeholderTextColor={"gray"}
               value={userInput.playerTwo}
               editable
               onChangeText={(value) => handleChange("playerTwo", value)}
@@ -135,7 +132,11 @@ export default function Body({route}) {
         {/* Add Buttons */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => { Add("playerOne", 25) }}>
+            <Pressable
+              onPress={() => {
+                Add("playerOne", 25);
+              }}
+            >
               <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
@@ -143,7 +144,11 @@ export default function Body({route}) {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => { Add("playerTwo", 25) }}>
+            <Pressable
+              onPress={() => {
+                Add("playerTwo", 25);
+              }}
+            >
               <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
             </Pressable>
           </View>
@@ -151,7 +156,11 @@ export default function Body({route}) {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => { Add("playerOne", 50) }}>
+            <Pressable
+              onPress={() => {
+                Add("playerOne", 50);
+              }}
+            >
               <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
@@ -159,7 +168,11 @@ export default function Body({route}) {
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable onPress={() => { Add("playerTwo", 50) }}>
+            <Pressable
+              onPress={() => {
+                Add("playerTwo", 50);
+              }}
+            >
               <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
             </Pressable>
           </View>
