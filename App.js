@@ -1,40 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Body from "./Components/Body";
-import Styles from './Styles/Styles'
+import Styles from "./Styles/Styles";
 
-
-import { View, Text, Pressable, Alert, Image } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from '@react-navigation/native';
 import { Camera } from "expo-camera";
-import { IconButton } from 'react-native-paper'
-import { manipulateAsync } from 'expo-image-manipulator';
-
+import { manipulateAsync } from "expo-image-manipulator";
+import { Alert, Pressable, StatusBar, Text, View } from "react-native";
+import { IconButton } from "react-native-paper";
 
 function Home({ route, navigation }) {
-
-
   return (
-    <View style={Styles.body}>
+    <View style={Styles.statusBar}>
+      <StatusBar barStyle="dark-content" />
+      <View style={Styles.body}>
+        <Body route={route} />
 
-      <Body route={route} />
+        <View style={{ alignItems: "center" }}>
+          <Pressable
+            onPress={() => navigation.navigate("Cam")}
+            style={Styles.camera_button}
+          >
+            <Text>Scan Dominoes</Text>
+          </Pressable>
+        </View>
 
-      <View style={{ alignItems: "center" }}>
-
-        <Pressable
-          onPress={() => navigation.navigate('Cam')}
-          style={Styles.camera_button}>
-          <Text>Scan Dominoes</Text>
-        </Pressable>
-
+        <View style={{ padding: 30 }}>
+          <View></View>
+        </View>
       </View>
-
-      <View style={{ padding: 30 }}>
-        <View></View>
-      </View>
-
-    </View >
-  )
+    </View>
+  );
 }
 
 function Cam({ navigation }) {
@@ -47,19 +43,19 @@ function Cam({ navigation }) {
           text: "Player 1",
           style: "destructive",
           onPress: () => {
-            navigation.navigate('Home', { playerOneScore: score });
-          }
+            navigation.navigate("Home", { playerOneScore: score });
+          },
         },
         {
           text: "Player 2",
           style: "default",
           onPress: () => {
-            navigation.navigate('Home', { playerTwoScore: score });
-          }
-        }
+            navigation.navigate("Home", { playerTwoScore: score });
+          },
+        },
       ]
     );
-  }
+  };
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
@@ -75,7 +71,7 @@ function Cam({ navigation }) {
 
   const takePicture = async () => {
     if (camera) {
-      const fileType = 'png';
+      const fileType = "png";
       const photo = await camera.takePictureAsync({ quality: 0.1 });
       const manipResult = await manipulateAsync(
         photo.uri,
@@ -87,25 +83,23 @@ function Cam({ navigation }) {
       setImage(uri);
       const formData = new FormData();
 
-      formData.append('file', {
+      formData.append("file", {
         uri,
         name: `photo.${fileType}`,
-        type: `image/${fileType}`
+        type: `image/${fileType}`,
       });
       fetch("https://domiscan-server-app.herokuapp.com/uploader", {
         method: "POST",
         body: formData,
         headers: {
-          "content-type": "multipart/form-data"
-        }
-
+          "content-type": "multipart/form-data",
+        },
       })
-        .then(response => {
-          return response.text()
+        .then((response) => {
+          return response.text();
         })
-        .then(data => promptUser(data))
-        .catch(error => Alert.alert(error + ". Try again"));
-
+        .then((data) => promptUser(data))
+        .catch((error) => Alert.alert(error + ". Try again"));
     }
   };
 
@@ -147,7 +141,6 @@ function Cam({ navigation }) {
               onPress={() => takePicture()}
             />
           </View>
-
         </Camera>
 
         {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
@@ -161,15 +154,14 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
           component={Home}
           options={{
-            title: 'DomiScan',
+            title: "DomiScan",
             headerStyle: {
-              backgroundColor: "#eee"
+              backgroundColor: "#eee",
             },
             headerTintColor: "black",
             headerTitleStyle: {
@@ -182,9 +174,9 @@ const App = () => {
           name="Cam"
           component={Cam}
           options={{
-            title: 'Scan Dominoes',
+            title: "Scan Dominoes",
             headerStyle: {
-              backgroundColor: "#000"
+              backgroundColor: "#000",
             },
             headerTintColor: "yellow",
             headerTitleStyle: {
@@ -192,9 +184,7 @@ const App = () => {
             },
           }}
         />
-
       </Stack.Navigator>
-
     </NavigationContainer>
   );
 };
