@@ -136,10 +136,10 @@ export default function Body({ route }) {
           <View style={Styles.inner}>
             <Pressable
               onPress={() => {
-                Add("playerOne", 25);
+                Add("playerOne", 30);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 30</Text>
             </Pressable>
           </View>
         </View>
@@ -148,10 +148,10 @@ export default function Body({ route }) {
           <View style={Styles.inner}>
             <Pressable
               onPress={() => {
-                Add("playerTwo", 25);
+                Add("playerTwo", 30);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 25</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 30</Text>
             </Pressable>
           </View>
         </View>
@@ -160,10 +160,10 @@ export default function Body({ route }) {
           <View style={Styles.inner}>
             <Pressable
               onPress={() => {
-                Add("playerOne", 50);
+                Add("playerOne", 60);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 60</Text>
             </Pressable>
           </View>
         </View>
@@ -172,10 +172,10 @@ export default function Body({ route }) {
           <View style={Styles.inner}>
             <Pressable
               onPress={() => {
-                Add("playerTwo", 50);
+                Add("playerTwo", 60);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 50</Text>
+              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 60</Text>
             </Pressable>
           </View>
         </View>
