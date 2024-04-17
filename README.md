@@ -32,26 +32,33 @@ There is one process during the game that takes a lot of time and it can be misl
 - [x] Place result in correct player :heavy_check_mark:
 
 # <a name="UI"></a> UI
-![Actual UI](./assets/UI.PNG)
+
+![Actual UI](./assets/new-ui.jpeg)
+
+![Actual UI](./assets/camera.jpeg)
 
 # <a name="Download"></a> Download the App
+
 Working on it...
 
 # Dependencies
 
 ### Node & Expo
+
 Node: `npm install` (Required)
 Expo Cli: `npm install -g expo-cli` (Required)
 
 ### Frontend
+
 - Camera Module: `expo install expo-camera` (Required)
 - EAS build: `npm install -g eas-cli` (Not Required)
-- React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context`  (Required)
+- React Native Navigation: `npm install @react-navigation/native @react-navigation/native-stack`, `expo install react-native-screens react-native-safe-area-context` (Required)
 - Icons: `react-native-paper`, `react-native-vector-icons` (Required)
 - Expo Sharing: `expo install expo-sharing` (Required)
 - Expo Media Galeria: `expo install expo-media-library` (Required)
 
 ### Backend
+
 - Python3
 - Flask: `pip3 install Flask` (Required)
 - Pandas: `pip3 install pandas` (Required)
