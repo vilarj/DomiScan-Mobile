@@ -70,13 +70,13 @@ function Cam({ navigation }) {
     if (camera) {
       const fileType = "png";
       const photo = await camera.takePictureAsync({ quality: 0.1 });
-      const manipResult = await manipulateAsync(
+      const mapResult = await manipulateAsync(
         photo.uri,
         [{ resize: { width: 540, height: 960 } }],
         { format: fileType }
       );
 
-      const uri = manipResult.uri;
+      const uri = mapResult.uri;
       setImage(uri);
       const formData = new FormData();
 
@@ -164,6 +164,7 @@ const App = () => {
             headerTitleStyle: {
               fontSize: 30,
             },
+            headerTitleAlign: 'center'
           }}
         />
 
