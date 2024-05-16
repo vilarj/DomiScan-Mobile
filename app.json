@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "a2f34440-a408-4ba9-be17-c5f62e5abfaa"
+      }
+    },
+    "android": {
+      "package": "com.vilarj.domiscan"
+    }
+  }
+}
