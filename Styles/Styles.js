@@ -1,6 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const DarkMode = StyleSheet.create({
+  // Screen Padding
+  screenPadding: {
+    padding: "20%",
+  },
+
   // Body Starts
   body: {
     backgroundColor: "#fff",

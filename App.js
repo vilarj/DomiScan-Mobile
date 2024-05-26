@@ -23,7 +23,7 @@ function Home({ route, navigation }) {
         </Pressable>
       </View>
 
-      <View style={{ padding: 30 }}>
+      <View style={Styles.screenPadding}>
         <View></View>
       </View>
     </View>
