@@ -14,7 +14,7 @@ function Home({ route, navigation }) {
     <View style={Styles.body}>
       <Body route={route} />
       <StatusBar barStyle="dark-content" />
-      <View style={{ alignItems: "center" }}>
+      <View style={Styles.camera_button_position}>
         <Pressable
           onPress={() => navigation.navigate("Cam")}
           style={Styles.camera_button}
@@ -105,7 +105,7 @@ function Cam({ navigation }) {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View>
       <View style={Styles.cameraContainer}>
         <Camera
           ref={(ref) => setCamera(ref)}
@@ -164,7 +164,7 @@ const App = () => {
             headerTitleStyle: {
               fontSize: 30,
             },
-            headerTitleAlign: 'center'
+            headerTitleAlign: "center",
           }}
         />
 

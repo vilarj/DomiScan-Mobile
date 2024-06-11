@@ -63,7 +63,7 @@ export default function Body({ route }) {
   }
 
   return (
-    <View style={theme == "light" ? Styles.body : Styles.body_dark}>
+    <View>
       {/* Main View */}
       <View style={Styles.container}>
         {/* Players */}
@@ -73,7 +73,7 @@ export default function Body({ route }) {
               placeholder="Enter Name"
               placeholderTextColor={"gray"}
               editable
-              style={{ color: "blue", fontSize: 18, fontStyle: "italic" }}
+              style={Styles.player_name_input}
               maxLength={20}
             />
           </View>
@@ -85,7 +85,7 @@ export default function Body({ route }) {
               placeholder="Enter Name"
               placeholderTextColor={"gray"}
               editable
-              style={{ color: "red", fontSize: 18, fontStyle: "italic" }}
+              style={Styles.player_name_input}
               maxLength={20}
             />
           </View>
@@ -99,7 +99,7 @@ export default function Body({ route }) {
               placeholderTextColor={"gray"}
               value={userInput.playerOne}
               editable
-              style={{ color: "blue" }}
+              style={Styles.player_actual_score}
               onChangeText={(value) => handleChange("playerOne", value)}
             />
           </View>
@@ -112,7 +112,7 @@ export default function Body({ route }) {
               placeholderTextColor={"gray"}
               value={userInput.playerTwo}
               editable
-              style={{ color: "red" }}
+              style={Styles.player_actual_score}
               onChangeText={(value) => handleChange("playerTwo", value)}
             />
           </View>
@@ -121,13 +121,13 @@ export default function Body({ route }) {
         {/* Total */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text style={{ color: "blue" }}>{scores.playerOne}</Text>
+            <Text style={Styles.player_total_score}>{scores.playerOne}</Text>
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text style={{ color: "red" }}>{scores.playerTwo}</Text>
+            <Text style={Styles.player_total_score}>{scores.playerTwo}</Text>
           </View>
         </View>
 
@@ -139,7 +139,7 @@ export default function Body({ route }) {
                 Add("playerOne", 30);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 30</Text>
+              <Text style={Styles.add_buttons}>Add 30</Text>
             </Pressable>
           </View>
         </View>
@@ -151,7 +151,7 @@ export default function Body({ route }) {
                 Add("playerTwo", 30);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 30</Text>
+              <Text style={Styles.add_buttons}>Add 30</Text>
             </Pressable>
           </View>
         </View>
@@ -163,7 +163,7 @@ export default function Body({ route }) {
                 Add("playerOne", 60);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 60</Text>
+              <Text style={Styles.add_buttons}>Add 60</Text>
             </Pressable>
           </View>
         </View>
@@ -175,7 +175,7 @@ export default function Body({ route }) {
                 Add("playerTwo", 60);
               }}
             >
-              <Text style={{ fontWeight: "500", fontSize: 22 }}>Add 60</Text>
+              <Text style={Styles.add_buttons}>Add 60</Text>
             </Pressable>
           </View>
         </View>

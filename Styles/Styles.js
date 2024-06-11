@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const DarkMode = StyleSheet.create({
+const Styles = StyleSheet.create({
   // Screen Padding
   screenPadding: {
     padding: "15%",
@@ -10,9 +10,6 @@ const DarkMode = StyleSheet.create({
   body: {
     backgroundColor: "#fff",
   },
-  // body_dark: {
-  //     backgroundColor: "#000"
-  // },
   container: {
     height: "72%",
     padding: 5,
@@ -29,6 +26,22 @@ const DarkMode = StyleSheet.create({
     height: "20%",
     padding: 5,
   },
+  player_name_input: {
+    color: "blue",
+    fontSize: 18,
+    fontStyle: "italic",
+  },
+  player_actual_score: {
+    color: "red",
+  },
+  player_total_score: {
+    color: "black",
+  },
+  add_buttons: {
+    fontWeight: "500",
+    fontSize: 22,
+    color: "green",
+  },
   box: {
     width: "50%",
     height: "60%",
@@ -37,12 +50,6 @@ const DarkMode = StyleSheet.create({
   inner: {
     flex: 1,
     backgroundColor: "#eee",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inner_dark: {
-    flex: 1,
-    backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -58,19 +65,12 @@ const DarkMode = StyleSheet.create({
     flex: 1,
     aspectRatio: 0.5,
   },
+  camera_button_position: {
+    alignItems: "center",
+  },
   camera_button: {
     alignItems: "center",
     backgroundColor: "#eee",
-    width: 145,
-    height: 145,
-    marginTop: 5,
-    padding: 5,
-    borderRadius: 100,
-    justifyContent: "center",
-  },
-  camera_button_dark: {
-    alignItems: "center",
-    backgroundColor: "#000",
     width: 145,
     height: 145,
     marginTop: 5,
@@ -97,4 +97,4 @@ const DarkMode = StyleSheet.create({
   // Camera Ends
 });
 
-export default DarkMode;
+export default Styles;
