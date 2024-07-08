@@ -1,21 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { Appearance, Pressable, Text, TextInput, View } from "react-native";
+import { Text, View } from "react-native";
 import Styles from "../Styles/Styles";
+import AddButton from "./AddButton";
+import PlayerInput from "./PlayerInput";
+import ResetScore from "./ResetScore";
+import TotalScore from "./TotalScore";
 
 export default function Body({ route }) {
   const [scores, setScore] = useState({ playerOne: 0, playerTwo: 0 });
-  const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [userInput, setUserInput] = useState({ playerOne: "", playerTwo: "" });
 
-  Appearance.addChangeListener((scheme) => {
-    setTheme(scheme);
-  });
-
   useEffect(() => {
-    updateScore("playerOne", userInput.playerOne);
-    updateScore("playerTwo", userInput.playerTwo);
+    checkForReset(); // Check for reset on initial render
+  }, [scores]);
+
+  /**
+   * useEffect checks for initial scores in route parameters
+   * and updates the userInput state accordingly.
+   */
+  useEffect(() => {
+    if (route.params) {
+      setUserInput((prevInput) => ({
+        ...prevInput,
+        playerOne: route.params.playerOneScore
+          ? String(route.params.playerOneScore)
+          : "",
+        playerTwo: route.params.playerTwoScore
+          ? String(route.params.playerTwoScore)
+          : "",
+      }));
+      route.params.playerOneScore = 0;
+      route.params.playerTwoScore = 0;
+    }
+  }, [route]);
+
+  /**
+   * useEffect for calculating the players' scores.
+   */
+  useEffect(() => {
+    const playerOneScore = calculateScores(userInput.playerOne);
+    const playerTwoScore = calculateScores(userInput.playerTwo);
+
+    if (playerOneScore !== scores.playerOne) {
+      setScore((prevScores) => ({
+        ...prevScores,
+        playerOne: playerOneScore,
+      }));
+    }
+
+    if (playerTwoScore !== scores.playerTwo) {
+      setScore((prevScores) => ({
+        ...prevScores,
+        playerTwo: playerTwoScore,
+      }));
+    }
   }, [userInput]);
 
+  /**
+   * checkForReset that checks if either player's score is 200 or greater.
+   * If true, it resets both scores and userInput states to
+   * zero and empty strings, respectively.
+   */
+  const checkForReset = () => {
+    if (scores.playerOne >= 200 || scores.playerTwo >= 200) {
+      setScore({ playerOne: 0, playerTwo: 0 });
+      setUserInput({ playerOne: "", playerTwo: "" }); // Reset input fields
+    }
+  };
+
+  /**
+   * Function that adds the score to the proper player.
+   *
+   * @param {Text} name of the player.
+   * @param {Number} amount to be added to the sum.
+   */
   const Add = (name, amount) => {
     let lastChar = userInput[name][userInput[name].length - 1];
     setUserInput((prevValues) => ({
@@ -27,6 +85,12 @@ export default function Body({ route }) {
     }));
   };
 
+  /**
+   * Sums up all the values entered in the score box.
+   *
+   * @param {userInput} input is the name of the player (playerOne | playerTwo).
+   * @returns total sum.
+   */
   function calculateScores(input) {
     let inputStr = String(input).split(",");
     let digits = inputStr.filter((value) => !isNaN(parseInt(value)));
@@ -35,21 +99,21 @@ export default function Body({ route }) {
     return sum;
   }
 
-  function updateScore(player, values) {
-    let playerScore = calculateScores(values);
-    if (playerScore)
-      setScore((prevScores) => ({
-        ...prevScores,
-        [player]: playerScore,
-      }));
-  }
-
-  function handleChange(name, values) {
+  /**
+   * This function replaces any characters other than numbers
+   * and commas with an empty string, preventing invalid input
+   * from reaching the calculation functions.
+   *
+   * @param {Text} name of the player (playerOne | PlayerTwo).
+   * @param {Number} value to be added as the current total score.
+   */
+  const handleChange = (name, value) => {
+    const sanitizedValue = value.replace(/[^0-9,]/g, ""); // Allow only numbers and commas
     setUserInput((inputValues) => ({
       ...inputValues,
-      [name]: values,
+      [name]: sanitizedValue,
     }));
-  }
+  };
 
   if (route.params) {
     if (route.params.playerOneScore > 0) {
@@ -69,24 +133,26 @@ export default function Body({ route }) {
         {/* Players */}
         <View style={Styles.players}>
           <View style={Styles.inner}>
-            <TextInput
-              placeholder="Enter Name"
-              placeholderTextColor={"gray"}
-              editable
-              style={Styles.player_name_input}
+            <PlayerInput
+              name={"playerOne"}
               maxLength={20}
+              placeholderTextColor={"gray"}
+              placeholder={"Enter Name"}
+              style={Styles.player_name_input}
+              onChangeText={(value) => handleChange("playerOne", value)}
             />
           </View>
         </View>
 
         <View style={Styles.players}>
           <View style={Styles.inner}>
-            <TextInput
-              placeholder="Enter Name"
-              placeholderTextColor={"gray"}
-              editable
-              style={Styles.player_name_input}
+            <PlayerInput
+              name={"playerTwo"}
               maxLength={20}
+              placeholderTextColor={"gray"}
+              placeholder={"Enter Name"}
+              style={Styles.player_name_input}
+              onChangeText={(value) => handleChange("playerTwo", value)}
             />
           </View>
         </View>
@@ -94,11 +160,10 @@ export default function Body({ route }) {
         {/* Body */}
         <View style={Styles.box}>
           <View style={Styles.inner}>
-            <TextInput
-              placeholder="Enter Score"
+            <PlayerInput
+              placeholder={"Enter Score"}
               placeholderTextColor={"gray"}
               value={userInput.playerOne}
-              editable
               style={Styles.player_actual_score}
               onChangeText={(value) => handleChange("playerOne", value)}
             />
@@ -107,11 +172,10 @@ export default function Body({ route }) {
 
         <View style={Styles.box}>
           <View style={Styles.inner}>
-            <TextInput
-              placeholder="Enter Score"
+            <PlayerInput
+              placeholder={"Enter Score"}
               placeholderTextColor={"gray"}
               value={userInput.playerTwo}
-              editable
               style={Styles.player_actual_score}
               onChangeText={(value) => handleChange("playerTwo", value)}
             />
@@ -121,64 +185,52 @@ export default function Body({ route }) {
         {/* Total */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text style={Styles.player_total_score}>{scores.playerOne}</Text>
+            <TotalScore score={scores.playerOne} />
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Text style={Styles.player_total_score}>{scores.playerTwo}</Text>
+            <TotalScore score={scores.playerTwo} />
           </View>
         </View>
 
         {/* Add Buttons */}
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable
-              onPress={() => {
-                Add("playerOne", 30);
-              }}
-            >
-              <Text style={Styles.add_buttons}>Add 30</Text>
-            </Pressable>
+            <AddButton title="Add 30" onPress={() => Add("playerOne", 30)} />
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable
-              onPress={() => {
-                Add("playerTwo", 30);
-              }}
-            >
-              <Text style={Styles.add_buttons}>Add 30</Text>
-            </Pressable>
+            <AddButton title="Add 30" onPress={() => Add("playerTwo", 30)} />
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable
-              onPress={() => {
-                Add("playerOne", 60);
-              }}
-            >
-              <Text style={Styles.add_buttons}>Add 60</Text>
-            </Pressable>
+            <AddButton title="Add 60" onPress={() => Add("playerOne", 60)} />
           </View>
         </View>
 
         <View style={Styles.total_score}>
           <View style={Styles.inner}>
-            <Pressable
-              onPress={() => {
-                Add("playerTwo", 60);
-              }}
-            >
-              <Text style={Styles.add_buttons}>Add 60</Text>
-            </Pressable>
+            <AddButton title="Add 60" onPress={() => Add("playerTwo", 60)} />
           </View>
         </View>
+
+        {/* Reset Button */}
+        <View>
+          <View>
+            {
+              scores.playerOne >= 200 || scores.playerTwo >= 200 ? ( // Disable if at or above 200
+                <ResetScore title="Reset" onPress={() => checkForReset()} />
+              ) : null // Informational text
+            }
+          </View>
+        </View>
+
         {/* End of Main View */}
       </View>
     </View>
