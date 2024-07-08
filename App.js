@@ -9,23 +9,25 @@ import { manipulateAsync } from "expo-image-manipulator";
 import { Alert, Pressable, StatusBar, Text, View } from "react-native";
 import { IconButton } from "react-native-paper";
 
+const CameraButton = ({ onPress, style }) => (
+  <Pressable onPress={onPress} style={style}>
+    <Text>Scan Dominoes</Text>
+  </Pressable>
+);
+
 function Home({ route, navigation }) {
   return (
     <View style={Styles.body}>
       <Body route={route} />
       <StatusBar barStyle="dark-content" />
       <View style={Styles.camera_button_position}>
-        <Pressable
+        <CameraButton
           onPress={() => navigation.navigate("Cam")}
           style={Styles.camera_button}
-        >
-          <Text>Scan Dominoes</Text>
-        </Pressable>
+        />
       </View>
-
-      <View style={Styles.screenPadding}>
-        <View></View>
-      </View>
+      {/* Conditionally render content within screenPadding as needed */}
+      <View style={Styles.screenPadding}>{/* Your content here */}</View>
     </View>
   );
 }
@@ -60,10 +62,11 @@ function Cam({ navigation }) {
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
-    (async () => {
+    const requestPermissions = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasCameraPermission(status === "granted");
-    })();
+    };
+    requestPermissions();
   }, []);
 
   const takePicture = async () => {
