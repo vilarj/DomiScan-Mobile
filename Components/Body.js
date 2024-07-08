@@ -11,7 +11,7 @@ export default function Body({ route }) {
   const [userInput, setUserInput] = useState({ playerOne: "", playerTwo: "" });
 
   useEffect(() => {
-    checkForReset(); // Check for reset on initial render
+    checkForReset();
   }, [scores]);
 
   /**
@@ -64,7 +64,7 @@ export default function Body({ route }) {
   const checkForReset = () => {
     if (scores.playerOne >= 200 || scores.playerTwo >= 200) {
       setScore({ playerOne: 0, playerTwo: 0 });
-      setUserInput({ playerOne: "", playerTwo: "" }); // Reset input fields
+      setUserInput({ playerOne: "", playerTwo: "" });
     }
   };
 
@@ -108,7 +108,8 @@ export default function Body({ route }) {
    * @param {Number} value to be added as the current total score.
    */
   const handleChange = (name, value) => {
-    const sanitizedValue = value.replace(/[^0-9,]/g, ""); // Allow only numbers and commas
+    const sanitizedValue = value.replace(/[^0-9,]/g, "");
+
     setUserInput((inputValues) => ({
       ...inputValues,
       [name]: sanitizedValue,
@@ -220,15 +221,11 @@ export default function Body({ route }) {
           </View>
         </View>
 
-        {/* Reset Button */}
+        {/* Reset Logic */}
         <View>
-          <View>
-            {
-              scores.playerOne >= 200 || scores.playerTwo >= 200 ? ( // Disable if at or above 200
-                <ResetScore title="Reset" onPress={() => checkForReset()} />
-              ) : null // Informational text
-            }
-          </View>
+          {scores.playerOne >= 200 || scores.playerTwo >= 200 ? (
+            <ResetScore title="Reset" onPress={() => checkForReset()} />
+          ) : null}
         </View>
 
         {/* End of Main View */}
