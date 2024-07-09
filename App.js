@@ -4,7 +4,7 @@ import Styles from "./Styles/Styles";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Camera } from "expo-camera";
+import { CameraView, useCameraPermissions } from "expo-camera";
 import { manipulateAsync } from "expo-image-manipulator";
 import { Alert, StatusBar, Text, View } from "react-native";
 import { IconButton } from "react-native-paper";
@@ -47,10 +47,10 @@ function Cam({ navigation }) {
     );
   };
 
-  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const [hasCameraPermission, setHasCameraPermission] = useCameraPermissions();
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [camType, setCamType] = useState(CameraView["back"]);
 
   useEffect(() => {
     const requestPermissions = async () => {
@@ -96,19 +96,19 @@ function Cam({ navigation }) {
     }
   };
 
-  if (hasCameraPermission === false) {
+  if (!hasCameraPermission) {
     return <Text>No Access to Camera. Need to accept the permissions</Text>;
   }
 
   return (
     <View>
       <View style={Styles.cameraContainer}>
-        <Camera
+        <CameraView
           ref={(ref) => setCamera(ref)}
           style={Styles.fixedRatio}
-          type={type}
+          type={camType}
           ratio={"1:1"}
-          autoFocus={Camera.Constants.AutoFocus.on}
+          autoFocus={CameraView.autoFocus}
         >
           <View style={Styles.cam_buttons1}>
             <IconButton
@@ -116,10 +116,10 @@ function Cam({ navigation }) {
               size={40}
               color={"yellow"}
               onPress={() => {
-                setType(
-                  type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back
+                setCamType(
+                  setFacing((current) =>
+                    current === "back" ? "front" : "back"
+                  )
                 );
               }}
             />
@@ -134,7 +134,7 @@ function Cam({ navigation }) {
               onPress={() => takePicture()}
             />
           </View>
-        </Camera>
+        </CameraView>
         {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
