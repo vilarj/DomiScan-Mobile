@@ -6,14 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Camera } from "expo-camera";
 import { manipulateAsync } from "expo-image-manipulator";
-import { Alert, Pressable, StatusBar, Text, View } from "react-native";
+import { Alert, StatusBar, Text, View } from "react-native";
 import { IconButton } from "react-native-paper";
-
-const CameraButton = ({ onPress, style }) => (
-  <Pressable onPress={onPress} style={style}>
-    <Text>Scan Dominoes</Text>
-  </Pressable>
-);
+import CameraButton from "./Components/CameraButton";
 
 function Home({ route, navigation }) {
   return (
@@ -21,12 +16,8 @@ function Home({ route, navigation }) {
       <Body route={route} />
       <StatusBar barStyle="dark-content" />
       <View style={Styles.camera_button_position}>
-        <CameraButton
-          onPress={() => navigation.navigate("Cam")}
-          style={Styles.camera_button}
-        />
+        <CameraButton navigation={navigation} />
       </View>
-      {/* Conditionally render content within screenPadding as needed */}
       <View style={Styles.screenPadding}>{/* Your content here */}</View>
     </View>
   );
@@ -100,6 +91,8 @@ function Cam({ navigation }) {
         })
         .then((data) => promptUser(data))
         .catch((error) => Alert.alert(error + ". Try again"));
+    } else {
+      console.warn("Camera is not yet ready.");
     }
   };
 
@@ -142,7 +135,6 @@ function Cam({ navigation }) {
             />
           </View>
         </Camera>
-
         {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
