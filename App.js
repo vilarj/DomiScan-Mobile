@@ -18,7 +18,7 @@ function Home({ route, navigation }) {
       <View style={Styles.camera_button_position}>
         <CameraButton navigation={navigation} />
       </View>
-      <View style={Styles.screen_padding}>{/* Your content here */}</View>
+      <View style={Styles.screen_padding} />
     </View>
   );
 }
@@ -30,14 +30,14 @@ function Cam({ navigation }) {
       "Who do you want to send the scanned score to?",
       [
         {
-          text: "Player 1",
+          text: { playerOne },
           style: "destructive",
           onPress: () => {
             navigation.navigate("Home", { playerOneScore: score });
           },
         },
         {
-          text: "Player 2",
+          text: { playerTwo },
           style: "default",
           onPress: () => {
             navigation.navigate("Home", { playerTwoScore: score });
@@ -48,9 +48,10 @@ function Cam({ navigation }) {
   };
 
   const [camPermission, requestCamPermission] = useCameraPermissions();
-  const [camType, setCamType] = useState("back");
+  const [camFacing, setCamFacing] = useState("back");
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
+
   const takePicture = async () => {
     if (camera) {
       const fileType = "png";
@@ -92,7 +93,7 @@ function Cam({ navigation }) {
   }
 
   if (!camPermission.granted) {
-    <Button onPress={requestCamPermission} title="grant permission" />;
+    <Button onPress={requestCamPermission} title="Grant Camera Permission" />;
   }
 
   return (
@@ -101,7 +102,7 @@ function Cam({ navigation }) {
         <CameraView
           captureRef={(ref) => setCamera(ref)}
           style={Styles.fixed_ratio}
-          type={camType}
+          facing={camFacing}
           ratio={"1:1"}
           autoFocus={CameraView.autoFocus}
         >
@@ -111,7 +112,7 @@ function Cam({ navigation }) {
               size={40}
               color={"yellow"}
               onPress={() => {
-                setCamType((current) =>
+                setCamFacing((current) =>
                   current === "back" ? "front" : "back"
                 );
               }}
