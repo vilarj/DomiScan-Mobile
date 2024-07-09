@@ -1,8 +1,22 @@
 import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
+  // Home Options
+  home_options: {
+    title: "DomiScan",
+    headerStyle: {
+      backgroundColor: "#eee",
+    },
+    headerTintColor: "black",
+    headerTitleStyle: {
+      fontSize: 30,
+    },
+    headerTitleAlign: "center",
+  },
+  // End of Home Options
+
   // Screen Padding
-  screenPadding: {
+  screen_padding: {
     padding: "15%",
   },
 
@@ -56,12 +70,12 @@ const Styles = StyleSheet.create({
   // Body Ends
 
   // Camera Begins
-  cameraContainer: {
+  camera_container: {
     flexDirection: "row",
     height: "100%",
     width: "100%",
   },
-  fixedRatio: {
+  fixed_ratio: {
     flex: 1,
     aspectRatio: 0.5,
   },
@@ -94,6 +108,17 @@ const Styles = StyleSheet.create({
     right: 10,
     margin: 10,
   },
+  camera_options: {
+    title: "",
+    headerStyle: {
+      backgroundColor: "#000",
+    },
+    headerTintColor: "yellow",
+    headerTitleStyle: {
+      fontSize: 20,
+    },
+  },
+
   // Camera Ends
 });
 

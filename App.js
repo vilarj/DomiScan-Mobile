@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Body from "./Components/Body";
 import Styles from "./Styles/Styles";
 
@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { manipulateAsync } from "expo-image-manipulator";
-import { Alert, StatusBar, Text, View } from "react-native";
+import { Alert, Button, StatusBar, View } from "react-native";
 import { IconButton } from "react-native-paper";
 import CameraButton from "./Components/CameraButton";
 
@@ -18,7 +18,7 @@ function Home({ route, navigation }) {
       <View style={Styles.camera_button_position}>
         <CameraButton navigation={navigation} />
       </View>
-      <View style={Styles.screenPadding}>{/* Your content here */}</View>
+      <View style={Styles.screen_padding}>{/* Your content here */}</View>
     </View>
   );
 }
@@ -47,19 +47,10 @@ function Cam({ navigation }) {
     );
   };
 
-  const [hasCameraPermission, setHasCameraPermission] = useCameraPermissions();
+  const [camPermission, requestCamPermission] = useCameraPermissions();
+  const [camType, setCamType] = useState("back");
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
-  const [camType, setCamType] = useState(CameraView["back"]);
-
-  useEffect(() => {
-    const requestPermissions = async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(status === "granted");
-    };
-    requestPermissions();
-  }, []);
-
   const takePicture = async () => {
     if (camera) {
       const fileType = "png";
@@ -96,16 +87,20 @@ function Cam({ navigation }) {
     }
   };
 
-  if (!hasCameraPermission) {
-    return <Text>No Access to Camera. Need to accept the permissions</Text>;
+  if (!camPermission) {
+    return <View />;
+  }
+
+  if (!camPermission.granted) {
+    <Button onPress={requestCamPermission} title="grant permission" />;
   }
 
   return (
     <View>
-      <View style={Styles.cameraContainer}>
+      <View style={Styles.camera_container}>
         <CameraView
-          ref={(ref) => setCamera(ref)}
-          style={Styles.fixedRatio}
+          captureRef={(ref) => setCamera(ref)}
+          style={Styles.fixed_ratio}
           type={camType}
           ratio={"1:1"}
           autoFocus={CameraView.autoFocus}
@@ -116,10 +111,8 @@ function Cam({ navigation }) {
               size={40}
               color={"yellow"}
               onPress={() => {
-                setCamType(
-                  setFacing((current) =>
-                    current === "back" ? "front" : "back"
-                  )
+                setCamType((current) =>
+                  current === "back" ? "front" : "back"
                 );
               }}
             />
@@ -135,7 +128,6 @@ function Cam({ navigation }) {
             />
           </View>
         </CameraView>
-        {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
       </View>
     </View>
   );
@@ -150,32 +142,13 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{
-            title: "DomiScan",
-            headerStyle: {
-              backgroundColor: "#eee",
-            },
-            headerTintColor: "black",
-            headerTitleStyle: {
-              fontSize: 30,
-            },
-            headerTitleAlign: "center",
-          }}
+          options={Styles.home_options}
         />
 
         <Stack.Screen
           name="Cam"
           component={Cam}
-          options={{
-            title: "Scan Dominoes",
-            headerStyle: {
-              backgroundColor: "#000",
-            },
-            headerTintColor: "yellow",
-            headerTitleStyle: {
-              fontSize: 20,
-            },
-          }}
+          options={Styles.camera_options}
         />
       </Stack.Navigator>
     </NavigationContainer>
